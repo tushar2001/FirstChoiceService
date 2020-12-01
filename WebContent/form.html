@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Form - FirstChoice Service</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>  
+  </head>
+<body ng-app="">
+
+<div class="container">
+<div class="col-sm-4">
+</div>
+<div class="col-sm-4">
+  <h2>Enter the details</h2>
+  <form action="">
+  
+    <div class="form-group">
+      <label for="uname">Name:</label>
+      <input type="text" class="form-control" id="uname" placeholder="Enter full name" name="uname" required>
+    </div>
+	
+	<div class="form-group" ng-switch="switchwheel">
+      <label>Vehicle Type:</label>
+	  
+      <div class="radio">
+      <label><input type="radio" ng-model="switchwheel" name="optradio" value="fourwheel" required>Four Wheeler</label>
+	  </div>
+	  
+	  <div class="radio">
+	  <label><input type="radio" ng-model="switchwheel" name="optradio" value="twowheel" checked>Two Wheeler</label>
+	  </div>
+	  
+	  <div ng-switch-when="fourwheel">
+	  <label for="sel1">Select Brand:</label>
+      <select class="form-control" id="sel1">
+        <option>Maruti Suzuki</option>
+        <option>Hyundai</option>
+        <option>Tata</option>
+        <option>Mahindra</option>
+		<option>Honda</option>
+		<option>Toyota</option>
+		<option>Ford</option>
+		<option>Renault</option>
+		<option>Volkswagen</option>
+		<option>Kia</option>
+		<option>MG</option>
+      </select>
+	  </div>
+	  
+	  <div ng-switch-when="twowheel">
+	  <label for="sel2">Select Brand:</label>
+      <select class="form-control" id="sel2">
+        <option>Royal Enfield</option>
+        <option>TVS</option>
+        <option>Hero Motocorp</option>
+        <option>Honda</option>
+		<option>Suzuki</option>
+		<option>Bajaj</option>
+		<option>Yamaha</option>
+		<option>KTM</option>
+      </select>
+	  </div>
+	</div>
+	
+	<div class="form-group">
+      <label for="city">City:</label>
+      <input type="text" class="form-control" id="city" placeholder="Enter city" name="city" required>
+    </div>
+	
+	<div class="form-group">
+	  <label for="phone">Mobile number:</label>
+	  <input type="tel" class="form-control" id="phone" placeholder="Enter mobile number" name="phone" maxlength="10" pattern="[6-9]{1}[0-9]{9}" required>
+	</div>
+	
+	<div class="form-group">
+      <label for="date1">Date of service:</label><br>
+	  <input type="date" class="form-control" id="date1" placeholder="mm/dd/yyyy" name="date1" required>
+    </div>
+	
+	
+	<!--
+    <div class="checkbox">
+      <label><input type="checkbox" name="remember"> Remember me</label>
+    </div>
+	-->
+	
+    <button type="submit" class="form-control btn btn-primary">Submit</button>
+  </form>
+  </div>
+  <div class="col-sm-4">
+</div>
+</div>
+
+</body>
+</html>
