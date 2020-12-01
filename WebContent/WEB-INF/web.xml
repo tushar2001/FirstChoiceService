@@ -1,1 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
+
+<servlet>
+<servlet-name>Customer</servlet-name>
+<servlet-class>Home.customerForm</servlet-class>
+</servlet>
+
+<servlet-mapping>
+<servlet-name>Customer</servlet-name>
+<url-pattern>/CustomerReg</url-pattern>
+</servlet-mapping>
+
+<servlet>
+<servlet-name>Customer1</servlet-name>
+<servlet-class>Home.customerButton</servlet-class>
+</servlet>
+
+<servlet-mapping>
+<servlet-name>Customer1</servlet-name>
+<url-pattern>/Customerbtn</url-pattern>
+</servlet-mapping>
+
+<servlet>
+<servlet-name>Vendor1</servlet-name>
+<servlet-class>Home.vendorButton</servlet-class>
+</servlet>
+
+<servlet-mapping>
+<servlet-name>Vendor1</servlet-name>
+<url-pattern>/Vendorbtn</url-pattern>
+</servlet-mapping>
+
+<welcome-file-list>
+	<welcome-file>homeUI.html</welcome-file>
+</welcome-file-list>
+  
+</web-app>
