@@ -3,16 +3,18 @@ package Home;
 import java.io.*;
 import java.sql.*;
 import javax.servlet.*;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 
 //import Test.DBUtil;
 
+@WebServlet("/CustomerReg")
 public class customerForm extends HttpServlet{
 
 	 protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 			 
 		 PrintWriter out=res.getWriter();
-		 
+		 	
 		 String uname=req.getParameter("uname");
 		 String radio=req.getParameter("optradio");
 		 String model=req.getParameter("model");
@@ -21,6 +23,7 @@ public class customerForm extends HttpServlet{
 		 String date=req.getParameter("date1");
 		 
 		 out.println(uname+" "+radio+" "+model+" "+city+" "+phone+" "+date);
+		 
 		 
 		 Connection con=DBUtil.getDBConnection();
 		  
@@ -48,5 +51,10 @@ public class customerForm extends HttpServlet{
 			  System.out.println("Data not found");
 			  e.printStackTrace();
 		  }
+		  
+		  HttpSession session = req.getSession();
+		  session.setAttribute("username", uname);
+		  res.sendRedirect("list.jsp");
+		  
 	 }
 }
