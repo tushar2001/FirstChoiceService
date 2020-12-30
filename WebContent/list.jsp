@@ -28,8 +28,8 @@
         <th>Address</th>
         <th>City</th>
         <th>Base Price</th>
-<!--    <th>Base Price- 4 wheeler</th>      -->
         <th>Contact</th>
+        <th>Select time</th>
       </tr>
     </thead>
     <tbody>
@@ -57,14 +57,40 @@
 			{
 	
 %>
-      <tr>
-        <td><%=resultSet.getString("vname") %></td>
-        <td><%=resultSet.getString("address") %></td>
-        <td><%=resultSet.getString("city") %></td>
-        <td><%=resultSet.getString("fcost") %></td>
-        <td><%=resultSet.getString("vphone") %></td>
-        
-      </tr>
+		      <tr>
+		        <td><%=resultSet.getString("vname") %></td>
+		        <td><%=resultSet.getString("address") %></td>
+		        <td><%=resultSet.getString("city") %></td>
+		        <td>&#8377; <%=resultSet.getString("fcost") %></td>
+		        <td><%=resultSet.getString("vphone") %></td>
+		        <td>
+			        <select class="form-control" id="sel1" name="model">
+			        <%
+			        //Select Time
+			        int limit = Integer.parseInt(resultSet.getString("vslots"));
+			        int baseTime = Integer.parseInt(resultSet.getString("start_time"));
+			        for(int i=0;i<5;i++)
+			        {
+			        	String option;
+			        	if(baseTime+i>12)
+			        		option="0" + Integer.toString(baseTime+i-12)+":00 P.M.";
+			        	else
+			        	{
+			        		if(baseTime+i>9)
+			        			option=Integer.toString(baseTime+i)+":00 A.M.";
+			        		else
+			        			option="0"+Integer.toString(baseTime+i)+":00 A.M.";
+			        	}
+			        		
+			        %>
+			        <option><%=option%></option>
+					<%
+					}
+					%>
+			      	</select>
+			      </td>  
+		        
+		      </tr>
 <%
 			}
 			if(radio.equals("twowheel") && resultSet.getString("twowheel").equals("1"))
@@ -74,8 +100,34 @@
 			        <td><%=resultSet.getString("vname") %></td>
 			        <td><%=resultSet.getString("address") %></td>
 			        <td><%=resultSet.getString("city") %></td>
-			        <td><%=resultSet.getString("tcost") %></td>
-			        <td><%=resultSet.getString("vphone") %></td>      
+			        <td>&#8377; <%=resultSet.getString("tcost") %></td>
+			        <td><%=resultSet.getString("vphone") %></td>
+			        <td>
+			        <select class="form-control" id="sel1" name="model">
+			        <%
+			        //Select Time
+			        int limit = Integer.parseInt(resultSet.getString("vslots"));
+			        int baseTime = Integer.parseInt(resultSet.getString("start_time"));
+			        for(int i=0;i<limit;i++)
+			        {
+			        	String option;
+			        	if(baseTime+i>12)
+			        		option="0" + Integer.toString(baseTime+i-12)+":00 P.M.";
+			        	else
+			        	{
+			        		if(baseTime+i>9)
+			        			option=Integer.toString(baseTime+i)+":00 A.M.";
+			        		else
+			        			option="0"+Integer.toString(baseTime+i)+":00 A.M.";
+			        	}
+			        		
+			        %>
+			        <option><%=option%></option>
+					<%
+					}
+					%>
+			      </select>
+			      </td>   
 			      </tr>
 <%
 			}
