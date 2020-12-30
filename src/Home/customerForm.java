@@ -54,6 +54,8 @@ public class customerForm extends HttpServlet{
 		  
 		  HttpSession session = req.getSession();
 		  session.setAttribute("username", uname);
+		  session.setAttribute("city", city);
+		  session.setAttribute("radio", radio);
 		  res.sendRedirect("list.jsp");
 		  
 	 }

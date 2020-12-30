@@ -1,3 +1,4 @@
+
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
         <%@page import="Home.DBUtil"%>
@@ -26,8 +27,9 @@
         <th>Service Center</th>
         <th>Address</th>
         <th>City</th>
-        <th>Base Price- 2 wheeler</th>
-        <th>Base Price- 4 wheeler</th>
+        <th>Base Price</th>
+<!--    <th>Base Price- 4 wheeler</th>      -->
+        <th>Contact</th>
       </tr>
     </thead>
     <tbody>
@@ -39,22 +41,45 @@
 	if(session.getAttribute("username")==null){
 		response.sendRedirect("form.html");
 	}
+	
 	try{
 	Connection con = DBUtil.getDBConnection();
 	Statement statement = con.createStatement();
 	String sql = "select * from fcs.vendor";
+	String city=(String)session.getAttribute("city");
+	String radio=(String)session.getAttribute("radio");
 	ResultSet resultSet = statement.executeQuery(sql);
+	
 	while(resultSet.next()){
+		if(city.equalsIgnoreCase(resultSet.getString("city")))
+		{
+			if(radio.equals("fourwheel") && resultSet.getString("fourwheel").equals("1"))
+			{
 	
 %>
       <tr>
         <td><%=resultSet.getString("vname") %></td>
         <td><%=resultSet.getString("address") %></td>
         <td><%=resultSet.getString("city") %></td>
-        <td><%=resultSet.getString("tcost") %></td>
         <td><%=resultSet.getString("fcost") %></td>
+        <td><%=resultSet.getString("vphone") %></td>
+        
       </tr>
 <%
+			}
+			if(radio.equals("twowheel") && resultSet.getString("twowheel").equals("1"))
+			{
+%>
+			      <tr>
+			        <td><%=resultSet.getString("vname") %></td>
+			        <td><%=resultSet.getString("address") %></td>
+			        <td><%=resultSet.getString("city") %></td>
+			        <td><%=resultSet.getString("tcost") %></td>
+			        <td><%=resultSet.getString("vphone") %></td>      
+			      </tr>
+<%
+			}
+		}
 	}
    }
 	catch(Exception e)
