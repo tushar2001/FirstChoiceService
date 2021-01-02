@@ -30,9 +30,9 @@
 <servlet-name>Vendor1</servlet-name>
 <url-pattern>/Vendorbtn</url-pattern>
 </servlet-mapping>
-
+ --> 
 <welcome-file-list>
 	<welcome-file>homeUI.html</welcome-file>
 </welcome-file-list>
- -->  
+ 
 </web-app>
