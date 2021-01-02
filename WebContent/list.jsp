@@ -1,4 +1,3 @@
-
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
         <%@page import="Home.DBUtil"%>
@@ -16,6 +15,24 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script> 
 <title>Service centers available</title>
+<script>
+$(document).ready(function(){
+	  $(".adddata").click(function(){
+		  
+		  var $row = $(this).closest("tr");    // Find the row
+		  $(".table").css("background-color","#FFFFFF");	  
+		  ($row).css("background-color", "#DCDCDC");
+		  ($row).css("border-style", "solid");
+		  var nametext = $row.find(".nr").text();
+		  var value = $row.find('.ti option:selected').val();
+		  $("#vname").val(nametext);
+		    $("#time").val(value);
+		    alert('Are you sure you want to book at ' + value +'?');
+		  });
+		  });
+			  
+</script>
+		  
 </head>
 <body>
 <div class="container">
@@ -37,7 +54,6 @@
 	response.setHeader("Cache-Control","no-cache, no-store, must-revalidate"); //HTTP 1.1
 	response.setHeader("Pragma","no-cache"); //HTTP 1.0
 	response.setHeader("Expires","0"); // Proxy
-
 	if(session.getAttribute("username")==null){
 		response.sendRedirect("form.html");
 	}
@@ -58,13 +74,13 @@
 	
 %>
 		      <tr>
-		        <td><%=resultSet.getString("vname") %></td>
-		        <td><%=resultSet.getString("address") %></td>
-		        <td><%=resultSet.getString("city") %></td>
-		        <td>&#8377; <%=resultSet.getString("fcost") %></td>
-		        <td><%=resultSet.getString("vphone") %></td>
+		        <td  class="adddata nr"><%=resultSet.getString("vname") %></td>
+		        <td  class="adddata"><%=resultSet.getString("address") %></td>
+		        <td  class="adddata"><%=resultSet.getString("city") %></td>
+		        <td  class="adddata">&#8377; <%=resultSet.getString("fcost") %></td>
+		        <td  class="adddata"><%=resultSet.getString("vphone") %></td>
 		        <td>
-			        <select class="form-control" id="sel1" name="model">
+			        <select class="form-control ti" id="sel1" name="model">
 			        <%
 			        //Select Time
 			        int limit = Integer.parseInt(resultSet.getString("vslots"));
@@ -74,22 +90,25 @@
 			        	String option;
 			        	if(baseTime+i>12)
 			        		option="0" + Integer.toString(baseTime+i-12)+":00 P.M.";
+			        	else if(baseTime+i==12)
+		        			option=Integer.toString(baseTime+i)+":00 P.M.";
 			        	else
 			        	{
-			        		if(baseTime+i>9)
+			        		
+			        		if(baseTime+i>9 && baseTime+i<12)
 			        			option=Integer.toString(baseTime+i)+":00 A.M.";
 			        		else
 			        			option="0"+Integer.toString(baseTime+i)+":00 A.M.";
 			        	}
 			        		
 			        %>
-			        <option><%=option%></option>
+			        <option class="nn <%= i %>" ><%=option%></option>
 					<%
 					}
 					%>
 			      	</select>
-			      </td>  
-		        
+			      </td> 
+		        </label>
 		      </tr>
 <%
 			}
@@ -97,13 +116,13 @@
 			{
 %>
 			      <tr>
-			        <td><%=resultSet.getString("vname") %></td>
-			        <td><%=resultSet.getString("address") %></td>
-			        <td><%=resultSet.getString("city") %></td>
-			        <td>&#8377; <%=resultSet.getString("tcost") %></td>
-			        <td><%=resultSet.getString("vphone") %></td>
-			        <td>
-			        <select class="form-control" id="sel1" name="model">
+			        <td  class="adddata nr"><%=resultSet.getString("vname") %></td>
+			        <td  class="adddata"><%=resultSet.getString("address") %></td>
+			        <td  class="adddata"><%=resultSet.getString("city") %></td>
+			        <td  class="adddata">&#8377; <%=resultSet.getString("tcost") %></td>
+			        <td  class="adddata"><%=resultSet.getString("vphone") %></td>
+			        <td class="ti">
+			        <select class="form-control" id="sel1" name="model" >
 			        <%
 			        //Select Time
 			        int limit = Integer.parseInt(resultSet.getString("vslots"));
@@ -113,9 +132,12 @@
 			        	String option;
 			        	if(baseTime+i>12)
 			        		option="0" + Integer.toString(baseTime+i-12)+":00 P.M.";
+			        	else if(baseTime+i==12)
+		        			option=Integer.toString(baseTime+i)+":00 P.M.";
 			        	else
 			        	{
-			        		if(baseTime+i>9)
+			        		
+			        		if(baseTime+i>9 && baseTime+i<12)
 			        			option=Integer.toString(baseTime+i)+":00 A.M.";
 			        		else
 			        			option="0"+Integer.toString(baseTime+i)+":00 A.M.";
@@ -139,9 +161,14 @@
 		e.printStackTrace();
 	}
 %>
+
 </tbody>
 </table>
+<form action="result.jsp" method="post">
+<input type="hidden" id="vname" name="vname">
+<input type="hidden" id="time" name="time">
+<button type="submit" id="submit" class="form-control btn btn-primary">Submit</button>
+</form>
 </div>
-
 </body>
 </html>
