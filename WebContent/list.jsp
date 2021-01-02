@@ -20,7 +20,6 @@ $(document).ready(function(){
 	  $(".adddata").click(function(){
 		  
 		  var $row = $(this).closest("tr");    // Find the row
-<<<<<<< HEAD
 		  $(".table").css("background-color","#FFFFFF");	  
 		  ($row).css("background-color", "#DCDCDC");
 		  ($row).css("border-style", "solid");
@@ -34,43 +33,14 @@ $(document).ready(function(){
 			  
 </script>
 		  
-=======
-		  var nametext = $row.find(".nr").text();
-		  var value = $row.find('.ti option:selected').val();
-
-<%--  <%
-	        String name = (String)request.getParameter("nametext");
-			String time = (String)request.getParameter("value");
-			out.println(name);
-			/* String name=request.getParameter("value");
-			if(name!=null){
-			    out.println(name);
-			}
-			else
-				out.println(	"rr"); */
-			System.out.println(name);
-			System.out.println(time);  
-%>  --%>
-
-		  
-
-		 if (confirm('Are you sure you want to book at ' + value )) {
-			alert('Thanks for confirming');
-}
-	  });
-});
-</script>
->>>>>>> branch 'master' of https://github.com/tushar2001/FirstChoiceService
 </head>
 <body>
 <div class="container">
 <h3 class="well">Welcome, ${username} <span class="glyphicon glyphicon-user"></span> </h3>
 <h4>Here's the service centers list based on your preferences:</h4>
-<form action="list.jsp" method="post">
 <table class="table table-hover">
     <thead>
       <tr>
- <!--   <th>Select</th>   -->
         <th>Service Center</th>
         <th>Address</th>
         <th>City</th>
@@ -104,11 +74,6 @@ $(document).ready(function(){
 	
 %>
 		      <tr>
-<<<<<<< HEAD
-=======
-<!-- 		    <td><input type="submit" name="name1" onclick="call" />Register</td>
-		        <td><input type="checkbox" class="radio" name="name1" />&nbsp;</td>    -->
->>>>>>> branch 'master' of https://github.com/tushar2001/FirstChoiceService
 		        <td  class="adddata nr"><%=resultSet.getString("vname") %></td>
 		        <td  class="adddata"><%=resultSet.getString("address") %></td>
 		        <td  class="adddata"><%=resultSet.getString("city") %></td>
@@ -143,12 +108,7 @@ $(document).ready(function(){
 					%>
 			      	</select>
 			      </td> 
-<<<<<<< HEAD
 		        </label>
-=======
-			      <td><input type="hidden" value="<%=resultSet.getString("id")%>" name="id" /></td> 
-		        
->>>>>>> branch 'master' of https://github.com/tushar2001/FirstChoiceService
 		      </tr>
 <%
 			}
@@ -156,11 +116,6 @@ $(document).ready(function(){
 			{
 %>
 			      <tr>
-<<<<<<< HEAD
-=======
-<!-- 			    <td><input type="submit" name="name1" onclick="call" />Register</td>
-    	       		<td><input type="checkbox" class="radio" name="name1" />&nbsp;</td>   	 -->	
->>>>>>> branch 'master' of https://github.com/tushar2001/FirstChoiceService
 			        <td  class="adddata nr"><%=resultSet.getString("vname") %></td>
 			        <td  class="adddata"><%=resultSet.getString("address") %></td>
 			        <td  class="adddata"><%=resultSet.getString("city") %></td>
@@ -209,13 +164,10 @@ $(document).ready(function(){
 
 </tbody>
 </table>
-<<<<<<< HEAD
 <form action="result.jsp" method="post">
 <input type="hidden" id="vname" name="vname">
 <input type="hidden" id="time" name="time">
 <button type="submit" id="submit" class="form-control btn btn-primary">Submit</button>
-=======
->>>>>>> branch 'master' of https://github.com/tushar2001/FirstChoiceService
 </form>
 </div>
 </body>
