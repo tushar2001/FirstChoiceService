@@ -30,9 +30,17 @@
 <servlet-name>Vendor1</servlet-name>
 <url-pattern>/Vendorbtn</url-pattern>
 </servlet-mapping>
+<<<<<<< HEAD
  -->  
 
+=======
+ --> 
+>>>>>>> branch 'master' of https://github.com/tushar2001/FirstChoiceService
 <welcome-file-list>
 	<welcome-file>homeUI.html</welcome-file>
 </welcome-file-list>
+<<<<<<< HEAD
+=======
+ 
+>>>>>>> branch 'master' of https://github.com/tushar2001/FirstChoiceService
 </web-app>
