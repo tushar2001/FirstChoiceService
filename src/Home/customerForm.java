@@ -21,6 +21,7 @@ public class customerForm extends HttpServlet{
 		 String city=req.getParameter("city");
 		 String phone =req.getParameter("phone");
 		 String date=req.getParameter("date1");
+		 int myid=0;
 		 
 		 out.println(uname+" "+radio+" "+model+" "+city+" "+phone+" "+date);
 		 
@@ -28,7 +29,7 @@ public class customerForm extends HttpServlet{
 		 Connection con=DBUtil.getDBConnection();
 		  
 		  try {  
-		  PreparedStatement ps=con.prepareStatement("insert into fcs.customer values(?, ?, ?, ?, ?, ?)");
+		  PreparedStatement ps=con.prepareStatement("insert into fcs.customer values(?, ?, ?, ?, ?, ?,fcs.cus_id_seq.nextval)");
 //		  PreparedStatement ss=con.prepareStatement("select * from fcs.customer");
 		  ps.setString(1, uname);
 		  ps.setString(2, radio);
@@ -36,13 +37,11 @@ public class customerForm extends HttpServlet{
 		  ps.setString(4, city);
 		  ps.setString(5, phone);
 		  ps.setString(6, date);
-		  ResultSet rs=ps.executeQuery();
-//		  ResultSet rs=ss.executeQuery();
-//		  if(rs.next()) {
-//			  String str = rs.getString("uname");
-//			  out.println(str);
-//
-//		  }
+		  ps.executeQuery();
+		  PreparedStatement ss=con.prepareStatement("select fcs.cus_id_seq.currval from sys.DUAL");
+		  ResultSet rs=ss.executeQuery();
+		  if(rs.next())
+			    myid = rs.getInt(1);
 		  
 
 		  }
@@ -56,6 +55,8 @@ public class customerForm extends HttpServlet{
 		  session.setAttribute("username", uname);
 		  session.setAttribute("city", city);
 		  session.setAttribute("radio", radio);
+		  session.setAttribute("myid", myid);
+		  session.setAttribute("book_date", date);
 		  res.sendRedirect("list.jsp");
 		  
 	 }

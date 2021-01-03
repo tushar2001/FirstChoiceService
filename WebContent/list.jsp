@@ -57,6 +57,8 @@ $(document).ready(function(){
 	if(session.getAttribute("username")==null){
 		response.sendRedirect("form.html");
 	}
+	int cus_id=(int)session.getAttribute("myid");
+	String book_date=(String)session.getAttribute("book_date");
 	
 	try{
 	Connection con = DBUtil.getDBConnection();
@@ -108,7 +110,7 @@ $(document).ready(function(){
 					%>
 			      	</select>
 			      </td> 
-		        </label>
+		        
 		      </tr>
 <%
 			}
@@ -167,6 +169,8 @@ $(document).ready(function(){
 <form action="result.jsp" method="post">
 <input type="hidden" id="vname" name="vname">
 <input type="hidden" id="time" name="time">
+<input type="hidden" value=<%= cus_id %> name="cusid" id="cusid">
+<input type="hidden" value=<%= book_date %> name="bookdate" id="bookdate">
 <button type="submit" id="submit" class="form-control btn btn-primary">Submit</button>
 </form>
 </div>
