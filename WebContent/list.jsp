@@ -28,7 +28,8 @@ $(document).ready(function(){
 		  $("#vname").val(nametext);
 		    $("#time").val(value);
 		    alert('Are you sure you want to book at ' + value +'?');
-		  });
+		    $(".btn").prop('disabled', false);
+		  }); 
 		  });
 			  
 </script>
@@ -167,11 +168,11 @@ $(document).ready(function(){
 </tbody>
 </table>
 <form action="result.jsp" method="post">
-<input type="hidden" id="vname" name="vname">
-<input type="hidden" id="time" name="time">
-<input type="hidden" value=<%= cus_id %> name="cusid" id="cusid">
-<input type="hidden" value=<%= book_date %> name="bookdate" id="bookdate">
-<button type="submit" id="submit" class="form-control btn btn-primary">Submit</button>
+<input type="hidden" id="vname" name="vname" required>
+<input type="hidden" id="time" name="time" required>
+<input type="hidden" value=<%= cus_id %> name="cusid" id="cusid" required>
+<input type="hidden" value=<%= book_date %> name="bookdate" id="bookdate" required>
+<button type="submit" id="submit" class="form-control btn btn-primary" disabled>Submit</button>
 </form>
 </div>
 </body>
